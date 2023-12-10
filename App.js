@@ -7,7 +7,7 @@ import ItemListCategories from './src/Screens/ItemListCategories';
 const App = () => {
   return (
     <View style={styles.container}>
-      <Home/>
+      <ItemListCategories/>
     </View>
   );
 }
