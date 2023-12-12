@@ -1,9 +1,13 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, Image } from 'react-native'
 import React from 'react'
 
 const ItemProduct = ({item}) => {
   return (
     <View style={styles.container}>
+      <Image
+          style={styles.image}
+          resizeMode='cover'
+          source={{uri:item.thumbnail}}/>
       <Text style={styles.text}>{item.title}</Text>
     </View>
   )
@@ -19,9 +23,16 @@ const styles = StyleSheet.create({
         marginVertical:10,
         paddingHorizontal:10,
         paddingVertical:15,
-        borderRadius:5
+        borderRadius:5,
+        flexDirection:"row",
+        alignItems:"center",  
+        gap:20,
     },
     text:{
-
+      alignItems:"center"
+    },
+    image:{
+      width:50,
+      height:50
     }
 })

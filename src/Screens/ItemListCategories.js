@@ -5,14 +5,17 @@ import Search from '../Components/Search'
 import allProducts from "../Data/products.json"
 import ItemProduct from '../Components/ItemProduct'
 
-const ItemListCategories = () => {
+const ItemListCategories = ({category}) => {
 
   const [keyWord, setKeyWord] = useState("")
   const [productsFiltered, setProductsFiltered] = useState(allProducts)
 
   useEffect(() => {
-    const productsFiltered = allProducts.filter(prod => prod.title.includes(keyWord))
-    setProductsFiltered(productsFiltered)
+    if(category){
+      const productsCategory = allProducts.filter(prod => prod.category === category)
+      const productsFiltered = productsCategory.filter(prod => prod.title.includes(keyWord))
+      setProductsFiltered(productsFiltered)
+    }
   }, [keyWord])
 
   return (
