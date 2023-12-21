@@ -1,12 +1,13 @@
-import { FlatList, Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
+import { Button, FlatList, Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Header from '../Components/Header'
 import Search from '../Components/Search'
 import allProducts from "../Data/products.json"
 import ItemProduct from '../Components/ItemProduct'
+import { colors } from '../Global/colors'
 
-const ItemListCategories = ({category}) => {
-
+const ItemListCategories = ({navigation, route}) => {
+  const {category} = route.params
   const [keyWord, setKeyWord] = useState("")
   const [productsFiltered, setProductsFiltered] = useState(allProducts)
 
@@ -20,13 +21,12 @@ const ItemListCategories = ({category}) => {
 
   return (
     <>
-      <Header/>
       <Search keyWord={keyWord} setKeyWord = {setKeyWord}/>
       <FlatList
         style={styles.container}
         data={productsFiltered}
         keyExtractor={item => item.id}
-        renderItem={({item}) => <ItemProduct item={item}/>}
+        renderItem={({item}) => <ItemProduct item={item} navigation={navigation} route={route}/>}
       />
     </>
   )
@@ -35,6 +35,11 @@ const ItemListCategories = ({category}) => {
 const styles = StyleSheet.create({
   container:{
     width:"100%", 
+  },
+  goBack:{
+    backgroundColor:colors.green1,
+    padding:7,
+    borderRadius:4 
   }
 })
 

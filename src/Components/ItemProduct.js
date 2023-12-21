@@ -1,15 +1,18 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, View, Image, useWindowDimensions, Pressable } from 'react-native'
 import React from 'react'
 
-const ItemProduct = ({item}) => {
+const ItemProduct = ({item, navigation, route}) => {
+
+  const {width, height} = useWindowDimensions()
+
   return (
-    <View style={styles.container}>
+    <Pressable style={styles.container} onPress={()=> navigation.navigate("Product", {id:item.id})}>
       <Image
           style={styles.image}
           resizeMode='cover'
           source={{uri:item.thumbnail}}/>
-      <Text style={styles.text}>{item.title}</Text>
-    </View>
+      <Text style={width>350 ? styles.text : styles.textMin}>{item.title}</Text>
+    </Pressable>
   )
 }
 
@@ -21,18 +24,24 @@ const styles = StyleSheet.create({
         backgroundColor:"gray",
         marginHorizontal:"10%",
         marginVertical:10,
-        paddingHorizontal:10,
-        paddingVertical:15,
+        paddingHorizontal:0,
+        paddingVertical:0,
         borderRadius:5,
         flexDirection:"row",
         alignItems:"center",  
         gap:20,
     },
     text:{
-      alignItems:"center"
+      alignItems:"center",
+      fontSize:15,
+    },
+    textMin:{
+      alignItems:"center",
+      fontSize:10,
     },
     image:{
-      width:50,
-      height:50
+      minWidth:80,
+      height:80,
+      width:"30%"
     }
 })

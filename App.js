@@ -1,24 +1,21 @@
-import { StyleSheet, Text, View } from 'react-native';
-import Home from './src/Screens/Home';
-import Categories from './src/Components/Categories';
-import Header from './src/Components/Header';
-import ItemListCategories from './src/Screens/ItemListCategories';
-import { useState } from 'react';
-import { useFonts } from 'expo-font';
+import { StyleSheet, Text, View, SafeAreaView, StatusBar } from 'react-native';
+import { colors } from './src/Global/colors';
+import Navitagor from './src/Navigation/Navitagor';
+
+
 
 const App = () => {
 
-  const [fontLoaded] = useFonts()
+  /*const [fontLoaded] = useFonts() */
 
-  const [categorySelected, setCategorySelected] = useState("")
   return (
-    <View style={styles.container}>
-      {categorySelected ?
-        <ItemListCategories category = {categorySelected}/>
-        :
-        <Home setCategorySelected = {setCategorySelected}/>
-      }
-    </View>
+    <>
+      <StatusBar
+        backgroundColor={colors.green1}
+        barStyle="default"
+      />
+      <Navitagor/>
+    </>
   );
 }
 

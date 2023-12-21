@@ -1,0 +1,33 @@
+import { NavigationContainer } from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import ItemListCategories from '../Screens/ItemListCategories';
+import ItemDetail from '../Screens/ItemDetail';
+import Home from '../Screens/Home';
+import Header from '../Components/Header';
+
+const Stack = createNativeStackNavigator();
+
+const Navitagor = () => {
+  return (
+    <NavigationContainer>
+        <Stack.Navigator
+          initialRouteName='Home'
+          screenOptions={({route}) => {
+            return {
+              header : () => <Header title = {
+                route.name === "Home" ? "Categorias" :
+                route.name === "Category" ? route.params.category :
+                "Detalle"
+              }/>
+            }
+          }}
+        >
+            <Stack.Screen name='Home' component={Home}/>
+            <Stack.Screen name='Category' component={ItemListCategories}/>
+            <Stack.Screen name='Product' component={ItemDetail}/>
+        </Stack.Navigator>
+    </NavigationContainer>
+  )
+}
+
+export default Navitagor

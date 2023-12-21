@@ -15,7 +15,7 @@ const Search = ({keyWord, setKeyWord}) => {
             <TextInput style={styles.input} placeholder='Buscar' value={input} onChangeText={(t) => setInput(t)}/>
 
             <Pressable onPress={() => setKeyWord(input)}>
-                <AntDesign name="search1" color="black" size={20}/>
+                <AntDesign name='search1' color="black" size={20}/>
             </Pressable>
             
             <Pressable onPress={() => setKeyWord("")}>
